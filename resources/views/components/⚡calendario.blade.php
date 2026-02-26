@@ -14,6 +14,8 @@ new class extends   Component
     public bool $myModal1 = false;
     public $currentMonth;
     public $currentYear;
+    public $alumnos;
+    public $alumnoseleccionado;
 
     public $selectedDate = null;
     public $horasa = [];
@@ -27,6 +29,9 @@ new class extends   Component
         $this->currentMonth = now()->month;
         $this->currentYear  = now()->year;
         $this->loadDaysWithHours();
+        if(Auth::user()->admin == 1){
+            $this->alumnos = \App\Models\User::all();
+        }
     }
 
     public function loadDaysWithHours()
@@ -69,7 +74,18 @@ new class extends   Component
         $this->dispatch('open-modal', name: 'hours-modal');
     }
 
-
+    public function inscribir($horaid)
+    {
+        if (Reserva::where($this->alumnoseleccionado, Auth::id())->where('hora_id', $horaid)->get()->count() == 0) {
+            $reserva = new Reserva;
+            $reserva->user_id = $this->alumnoseleccionado;
+            $reserva->hora_id = $horaid;
+            $reserva->save();
+            $this->reservas = Reserva::all();
+        } else {
+            $this->myModal1 = true;
+        }
+    }
 
     public function inscribirse($horaid)
     {
@@ -120,7 +136,7 @@ new class extends   Component
 ?>
 
 <div>
-    <x-mary-modal wire:model="myModal1" title="Ya tienes una reserva" class="backdrop-blur">
+    <x-mary-modal wire:model="myModal1" title="Ya hay una reserva con el alumno seleccionado en esta hora" class="backdrop-blur">
         Presiona `ESC`, haz click afuera o click `CANCELAR` para cerrar esta ventana.
 
         <x-slot:actions>
@@ -236,6 +252,7 @@ new class extends   Component
         <div class="my-6">
             <flux:separator />
         </div>
+
         @foreach($horas->where('dia', $selectedDate) as $hora)
             <flux:card class="space-y-6 mb-4">
                 <div>
@@ -244,39 +261,51 @@ new class extends   Component
                     @if($reservas->where('hora_id',$hora->id)->count() >= 9) <flux:badge color="red">Clase Llena</flux:badge> @else <flux:badge color="lime">Cupos Disponibles</flux:badge>@endif
                 </div>
                 <div class="space-y-6">
-                    {{--<flux:table>
-                        <flux:table.columns>
-                            <flux:table.column>Participante</flux:table.column>
-                            @if(Auth::user()->admin == 1)
-                                <flux:table.column>Borrar</flux:table.column>
-                            @endif
-                        </flux:table.columns>
-                        @foreach($reservas->where('hora_id',$hora->id) as $reserva)
-                            <flux:table.rows>
-                                <flux:table.row>
-                                    <flux:table.cell>{{\App\Models\User::find($reserva->user_id)->name}}</flux:table.cell>
-                                    @if(Auth::user()->admin == 1)
-                                        <flux:table.cell>
-                                            @if(Auth::user()->admin == 1)
-                                                <flux:button wire:click="expulsar({{$hora->id}},{{$reserva->user_id}})" size="xs" icon="x-mark" variant="ghost" inset />
-                                            @endif
-                                        </flux:table.cell>
-                                    @endif
-                                </flux:table.row>
-                            </flux:table.rows>
-                        @endforeach
-                    </flux:table>--}}
+                    @if(Auth::user()->admin == 1)
+                        <flux:table>
+                            <flux:table.columns>
+                                <flux:table.column>Participante</flux:table.column>
+                                @if(Auth::user()->admin == 1)
+                                    <flux:table.column>Borrar</flux:table.column>
+                                @endif
+                            </flux:table.columns>
+                            @foreach($reservas->where('hora_id',$hora->id) as $reserva)
+                                <flux:table.rows>
+                                    <flux:table.row>
+                                        <flux:table.cell>{{\App\Models\User::find($reserva->user_id)->name}}</flux:table.cell>
+                                        @if(Auth::user()->admin == 1)
+                                            <flux:table.cell>
+                                                @if(Auth::user()->admin == 1)
+                                                    <flux:button wire:click="expulsar({{$hora->id}},{{$reserva->user_id}})" size="xs" icon="x-mark" variant="ghost" inset />
+                                                @endif
+                                            </flux:table.cell>
+                                        @endif
+                                    </flux:table.row>
+                                </flux:table.rows>
+                            @endforeach
+                        </flux:table>
+                    @endif
+
                 </div>
                 <div class="space-y-2">
-                    @if($reservas->where('hora_id',$hora->id)->count() >= 9)
-                        @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0)
-                            <flux:button variant="danger" class="w-full" wire:click="sacar({{$hora->id}})">Salir de la clase</flux:button>
-                        @endif
+                    @if(Auth::user()->admin == 1)
+                        <flux:select wire:model.live="alumnoseleccionado" size="sm" placeholder="Selecciona un alumno...">
+                            @foreach($alumnos as $alumno)
+                                <flux:select.option value="{{$alumno->id}}">{{$alumno->name}}</flux:select.option>
+                            @endforeach
+                        </flux:select>
+                        <flux:button variant="primary" class="w-full" wire:click="inscribir({{$hora->id}})">Inscribir a la clase</flux:button>
                     @else
-                        @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0)
-                            <flux:button variant="danger" class="w-full" wire:click="sacar({{$hora->id}})">Salir de la clase</flux:button>
+                        @if($reservas->where('hora_id',$hora->id)->count() >= 9)
+                            @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0)
+                                <flux:button variant="danger" class="w-full" wire:click="sacar({{$hora->id}})">Salir de la clase</flux:button>
+                            @endif
                         @else
-                            <flux:button variant="primary" class="w-full" wire:click="inscribirse({{$hora->id}})">Inscribirse a la clase</flux:button>
+                            @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0)
+                                <flux:button variant="danger" class="w-full" wire:click="sacar({{$hora->id}})">Salir de la clase</flux:button>
+                            @else
+                                <flux:button variant="primary" class="w-full" wire:click="inscribirse({{$hora->id}})">Inscribirse a la clase</flux:button>
+                            @endif
                         @endif
                     @endif
                 </div>
