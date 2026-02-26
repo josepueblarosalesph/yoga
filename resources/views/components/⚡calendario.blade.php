@@ -128,6 +128,37 @@ new class extends   Component
         </x-slot:actions>
     </x-mary-modal>
 
+    {{-- Modal --}}
+    <flux:modal name="hours-modal" class="w-full max-w-md">
+
+        <div class="p-6">
+
+            <h3 class="text-lg font-semibold mb-4">
+                Horas disponibles {{ $selectedDate }}
+            </h3>
+
+            @if(count($horasa))
+                <div class="grid grid-cols-3 gap-3">
+                    @foreach($horasa as $hora)
+                        <button class="p-2 bg-black hover:bg-gray-600 rounded text-sm">
+                            {{ \Carbon\Carbon::parse($hora->dia) }}
+                        </button>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-gray-500">No hay horas disponibles.</p>
+            @endif
+
+            <div class="mt-6 text-right">
+                <flux:button x-on:click="$flux.close('hours-modal')">
+                    Cerrar
+                </flux:button>
+            </div>
+
+        </div>
+
+    </flux:modal>
+
     {{-- Header --}}
     <div class="flex items-center justify-between mb-6">
 
@@ -201,37 +232,10 @@ new class extends   Component
 
     </div>
 
-    {{-- Modal --}}
-    <flux:modal name="hours-modal" class="w-full max-w-md">
-
-        <div class="p-6">
-
-            <h3 class="text-lg font-semibold mb-4">
-                Horas disponibles {{ $selectedDate }}
-            </h3>
-
-            @if(count($horasa))
-                <div class="grid grid-cols-3 gap-3">
-                    @foreach($horasa as $hora)
-                        <button class="p-2 bg-black hover:bg-gray-600 rounded text-sm">
-                            {{ \Carbon\Carbon::parse($hora->dia) }}
-                        </button>
-                    @endforeach
-                </div>
-            @else
-                <p class="text-gray-500">No hay horas disponibles.</p>
-            @endif
-
-            <div class="mt-6 text-right">
-                <flux:button x-on:click="$flux.close('hours-modal')">
-                    Cerrar
-                </flux:button>
-            </div>
-
-        </div>
-
-    </flux:modal>
     @if($selectedDate)
+        <div class="my-6">
+            <flux:separator />
+        </div>
         @foreach($horas->where('dia', $selectedDate) as $hora)
             <flux:card class="space-y-6 mb-4">
                 <div>

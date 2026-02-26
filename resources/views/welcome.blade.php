@@ -22,7 +22,7 @@
         @else
             <a href="{{ route('login') }}"
                class="text-sm text-white bg-black/40 backdrop-blur px-4 py-2 rounded-full hover:bg-black/60 transition mr-2">
-                Log in
+                Ingresar
             </a>
 
             @if (Route::has('register'))
@@ -49,16 +49,6 @@
 
     <!-- Overlay -->
     <div class="absolute inset-0 bg-black/50"></div>
-
-    <!-- Header -->
-    <header class="absolute top-0 right-0 w-full flex justify-end p-6 z-20">
-        @if (Route::has('login'))
-            <a href="{{ route('login') }}"
-               class="px-5 py-2 text-sm font-medium text-white border border-white rounded-lg backdrop-blur-sm hover:bg-white hover:text-black transition">
-                Login
-            </a>
-        @endif
-    </header>
 
     <!-- Contenido central -->
     <div class="relative z-10 flex flex-col items-center text-center px-6">
