@@ -76,7 +76,7 @@ new class extends   Component
 
     public function inscribir($horaid)
     {
-        if (Reserva::where($this->alumnoseleccionado, Auth::id())->where('hora_id', $horaid)->get()->count() == 0) {
+        if (Reserva::where('user_id', $this->alumnoseleccionado)->where('hora_id', $horaid)->get()->count() == 0) {
             $reserva = new Reserva;
             $reserva->user_id = $this->alumnoseleccionado;
             $reserva->hora_id = $horaid;
