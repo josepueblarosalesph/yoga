@@ -288,11 +288,11 @@ new class extends   Component
         <div class="my-6">
             <flux:separator />
         </div>
-
+        @if(Auth::user()->admin == 1)
         <div class="mb-6">
             <flux:button variant="primary" class="w-full" wire:click="$wire.myModal2 = true" >Crear Hora para el dia {{$selectedDate}}</flux:button>
         </div>
-
+        @endif
         @foreach($horas->where('dia', $selectedDate) as $hora)
             <flux:card class="space-y-6 mb-4">
                 <div>
