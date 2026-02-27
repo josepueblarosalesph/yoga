@@ -12,12 +12,14 @@ new class extends   Component
     public $idseleccionado = "lala1";
     public $reservas;
     public bool $myModal1 = false;
+    public bool $myModal2 = false;
     public $currentMonth;
     public $currentYear;
     public $alumnos;
     public $alumnoseleccionado;
 
     public $selectedDate = null;
+    public $selectedHour = null;
     public $horasa = [];
 
     public $daysWithHours = [];
@@ -33,6 +35,7 @@ new class extends   Component
         if(Auth::user()->admin == 1){
             $this->alumnos = \App\Models\User::all();
         }
+        $this->selectedDate = today()->format('Y-m-d');
     }
 
     public function loadDaysWithHours()
@@ -109,6 +112,16 @@ new class extends   Component
         Reserva::where('user_id', $userid)->where('hora_id', $horaid)->delete();
     }
 
+    public function guardarhora()
+    {
+        $hora = new Hora;
+        $hora->dia = $this->selectedDate;
+        $hora->name = $this->selectedDate . ' ' . $this->selectedHour;
+        $hora->save();
+        $this->selectedHour = null;
+        $this->myModal2 = false;
+    }
+
     public function render()
     {
         $startOfMonth = Carbon::create($this->currentYear, $this->currentMonth, 1);
@@ -142,6 +155,15 @@ new class extends   Component
 
         <x-slot:actions>
             <x-mary-button label="Cancelar" @click="$wire.myModal1 = false" />
+        </x-slot:actions>
+    </x-mary-modal>
+
+    <x-mary-modal wire:model="myModal2" title="Crea la hora para el dia {{$selectedDate}}" class="backdrop-blur">
+        Selecciona la hora {{$selectedHour}}
+        <x-mary-datetime label="Hora" wire:model.live="selectedHour" icon="o-calendar" type="time" inline />
+        <x-slot:actions>
+            <x-mary-button label="Cancelar" @click="$wire.myModal2 = false" />
+            <x-mary-button label="Guardar" wire:click="guardarhora" />
         </x-slot:actions>
     </x-mary-modal>
 
@@ -249,10 +271,14 @@ new class extends   Component
 
     </div>
 
+
+
     @if($selectedDate)
         <div class="my-6">
             <flux:separator />
         </div>
+
+        <flux:button variant="primary" class="w-full" wire:click="$wire.myModal2 = true" >Crear Hora para el dia {{$selectedDate}}</flux:button>
 
         @foreach($horas->where('dia', $selectedDate) as $hora)
             <flux:card class="space-y-6 mb-4">
