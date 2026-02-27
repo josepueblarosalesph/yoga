@@ -11,9 +11,12 @@
             </flux:sidebar.header>
 
             <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Platform')" class="grid">
+                <flux:sidebar.group :heading="__('Menu')" class="grid">
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
+                        {{ __('Agendar Hora') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="pencil-square" :href="route('reservas')" :current="request()->routeIs('reservas')" wire:navigate>
+                        {{ __('Mis reservas') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
@@ -21,12 +24,8 @@
             <flux:spacer />
 
             <flux:sidebar.nav>
-                <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                    {{ __('Repository') }}
-                </flux:sidebar.item>
-
-                <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                    {{ __('Documentation') }}
+                <flux:sidebar.item icon="book-open-text" href="#" target="_blank">
+                    {{ __('Recomendaciones') }}
                 </flux:sidebar.item>
             </flux:sidebar.nav>
 
@@ -66,7 +65,7 @@
 
                     <flux:menu.radio.group>
                         <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>
-                            {{ __('Settings') }}
+                            {{ __('Configuración') }}
                         </flux:menu.item>
                     </flux:menu.radio.group>
 
@@ -81,7 +80,7 @@
                             class="w-full cursor-pointer"
                             data-test="logout-button"
                         >
-                            {{ __('Log Out') }}
+                            {{ __('Cerrar sesión') }}
                         </flux:menu.item>
                     </form>
                 </flux:menu>

@@ -24,6 +24,7 @@ new class extends   Component
 
     public function mount()
     {
+        Carbon::setLocale('es');
         $this->horas = Hora::all();
         $this->reservas = Reserva::all();
         $this->currentMonth = now()->month;
@@ -183,7 +184,7 @@ new class extends   Component
             <flux:button wire:click="nextMonth" variant="ghost">▶</flux:button>
         </div>
 
-        <h2 class="text-2xl text-black font-semibold capitalize">
+        <h2 class="text-2xl text-black dark:text-neutral-200 font-semibold capitalize">
             {{ $monthName }}
         </h2>
 
@@ -192,7 +193,7 @@ new class extends   Component
     </div>
 
     {{-- Días de la semana --}}
-    <div class="grid grid-cols-7 text-center font-medium text-gray-500 mb-2">
+    <div class="grid grid-cols-7 text-center font-medium text-neutral-700 dark:text-neutral-200 mb-2">
         <div>Lun</div>
         <div>Mar</div>
         <div>Mié</div>
@@ -203,12 +204,12 @@ new class extends   Component
     </div>
 
     {{-- Grid calendario --}}
-    <div class="grid grid-cols-7 gap-px bg-gray-200 rounded-xl overflow-hidden">
+    <div class="grid grid-cols-7 gap-px bg-gray-200 dark:bg-neutral-400 rounded-xl overflow-hidden">
 
         @foreach($days as $day)
 
             @if($day === null)
-                <div class="bg-gray-50 h-28"></div>
+                <div class="bg-gray-50 dark:bg-neutral-900 h-28"></div>
             @else
                 @php
                     $dateFormatted = $day->format('Y-m-d');
@@ -219,15 +220,15 @@ new class extends   Component
                 <div
                     wire:click="selectDay('{{ $dateFormatted }}')"
                     class="
-                        h-28 bg-white p-2 cursor-pointer relative
-                        hover:bg-blue-50 transition
+                        h-28 bg-white dark:bg-neutral-900 p-2 cursor-pointer relative
+                        hover:bg-blue-50 dark:hover:bg-neutral-700 transition
                     "
                 >
                     <div class="flex justify-between items-start">
 
                         <span class="
                             text-sm font-medium
-                            {{ $isToday ? 'bg-green-700 text-white rounded-full px-2' : 'bg-gray-400 text-white rounded-full px-2' }}
+                            {{ $isToday ? 'bg-green-700 text-white rounded-full px-2' : 'bg-gray-500 text-white rounded-full px-2' }}
                         ">
                             {{ $day->day }}
                         </span>
@@ -259,6 +260,7 @@ new class extends   Component
                     <flux:heading size="lg">{{$hora->name}}</flux:heading>
                     <flux:text class="my-2">Máximo 9 personas</flux:text>
                     @if($reservas->where('hora_id',$hora->id)->count() >= 9) <flux:badge color="red">Clase Llena</flux:badge> @else <flux:badge color="lime">Cupos Disponibles</flux:badge>@endif
+                    @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0) <flux:badge color="yellow">Ya estas inscrit@ en esta clase</flux:badge> @endif
                 </div>
                 <div class="space-y-6">
                     @if(Auth::user()->admin == 1)

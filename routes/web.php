@@ -10,4 +10,8 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::view('reservas', 'reservas')
+    ->middleware(['auth', 'verified'])
+    ->name('reservas');
+
 require __DIR__.'/settings.php';
