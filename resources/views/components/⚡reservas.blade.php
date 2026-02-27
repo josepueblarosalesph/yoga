@@ -5,6 +5,7 @@ use App\Models\Reserva;
 use App\Models\Hora;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use App\Models\User;
 
 new class extends Component
 {
@@ -12,11 +13,19 @@ new class extends Component
 
     public function mount(){
         $fecha = Carbon::parse(today());
-        $this->reservas = Reserva::select('reservas.*')
-            ->where('user_id',Auth::id())
-            ->join('horas', 'reservas.hora_id', '=', 'horas.id')
-            ->where('horas.dia', '>=', $fecha)
-            ->get();
+        if(Auth::user()->admin == 1){
+            $this->reservas = Reserva::select('reservas.*')
+                ->join('horas', 'reservas.hora_id', '=', 'horas.id')
+                ->where('horas.dia', '>=', $fecha)
+                ->get();
+        }else{
+            $this->reservas = Reserva::select('reservas.*')
+                ->where('user_id',Auth::id())
+                ->join('horas', 'reservas.hora_id', '=', 'horas.id')
+                ->where('horas.dia', '>=', $fecha)
+                ->get();
+        }
+
     }
 
     public function eliminar($reservaid)
@@ -30,6 +39,7 @@ new class extends Component
     <flux:table>
         <flux:table.columns>
             <flux:table.column>Dia</flux:table.column>
+            @if(Auth::user()->admin == 1)<flux:table.column>Alumno</flux:table.column>@endif
             <flux:table.column>Salir de la clase</flux:table.column>
         </flux:table.columns>
         <flux:table.rows>
@@ -37,7 +47,9 @@ new class extends Component
                 <flux:table.row :key="$reserva->id">
 
                     <flux:table.cell class="whitespace-nowrap">{{ Hora::where('id',$reserva->hora_id)->first()->name }}</flux:table.cell>
-
+                    @if(Auth::user()->admin == 1)
+                        <flux:table.cell class="whitespace-nowrap">{{ User::where('id',$reserva->user_id)->first()->name }}</flux:table.cell>
+                    @endif
                     <flux:table.cell>
                         <flux:button wire:click="eliminar({{$reserva->id}})" variant="ghost" size="sm" icon="minus-circle" inset="top bottom"></flux:button>
                     </flux:table.cell>
