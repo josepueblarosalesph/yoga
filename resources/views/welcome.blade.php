@@ -207,42 +207,96 @@
             </p>
         </div>
 
-        <!-- Tabla -->
-        <div class="overflow-x-auto">
-            <div class="bg-white/90 backdrop-blur-sm shadow-2xl rounded-3xl overflow-hidden border border-amber-200">
+        <!-- ===================== -->
+        <!-- 📱 MOBILE (Cards) -->
+        <!-- ===================== -->
+        <div class="grid gap-6 md:hidden">
+
+            <!-- Lunes -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Lunes</h3>
+                <div class="space-y-2 text-gray-700">
+                    <p>8:00*</p>
+                    <p>19:00</p>
+                </div>
+            </div>
+
+            <!-- Martes -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Martes</h3>
+                <div class="space-y-2 text-gray-700">
+                    <p>06:30</p>
+                    <p>8:00*</p>
+                </div>
+            </div>
+
+            <!-- Miércoles -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Miércoles</h3>
+                <div class="space-y-2 text-gray-700">
+                    <p>8:00*</p>
+                    <p>19:00</p>
+                </div>
+            </div>
+
+            <!-- Jueves -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Jueves</h3>
+                <div class="space-y-2 text-gray-700">
+                    <p>8:00*</p>
+                    <p>19:00</p>
+                </div>
+            </div>
+
+            <!-- Viernes -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Viernes</h3>
+                <div class="space-y-2 text-gray-700">
+                    <p>8:00</p>
+                    <p class="text-sm text-gray-500">(Guiado)</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- 💻 DESKTOP (Tabla) -->
+        <!-- ===================== -->
+        <div class="hidden md:block mt-8">
+            <div class="bg-white shadow-2xl rounded-3xl overflow-hidden border border-amber-200">
 
                 <table class="min-w-full text-center">
 
                     <thead class="bg-amber-200 text-gray-800">
-                    <tr class="text-sm md:text-base uppercase tracking-wide">
-                        <th class="py-5 px-6 font-semibold">Lunes</th>
-                        <th class="py-5 px-6 font-semibold">Martes</th>
-                        <th class="py-5 px-6 font-semibold">Miércoles</th>
-                        <th class="py-5 px-6 font-semibold">Jueves</th>
-                        <th class="py-5 px-6 font-semibold">Viernes</th>
+                    <tr class="uppercase tracking-wide">
+                        <th class="py-5 px-6">Lunes</th>
+                        <th class="py-5 px-6">Martes</th>
+                        <th class="py-5 px-6">Miércoles</th>
+                        <th class="py-5 px-6">Jueves</th>
+                        <th class="py-5 px-6">Viernes</th>
                     </tr>
                     </thead>
 
-                    <tbody class="divide-y divide-gray-100 text-gray-700 bg-white">
-                    <tr class="hover:bg-amber-50 transition duration-200">
-                        <td class="py-8 px-6 space-y-3">
-                            <p class="text-lg font-medium">8:00*</p>
-                            <p class="text-lg font-medium">19:00</p>
+                    <tbody class="divide-y divide-gray-100 text-gray-700">
+                    <tr>
+                        <td class="py-8 space-y-2">
+                            <p>8:00*</p>
+                            <p>19:00</p>
                         </td>
-                        <td class="py-8 px-6 space-y-3">
-                            <p class="text-lg font-medium">06:30</p>
-                            <p class="text-lg font-medium">8:00*</p>
+                        <td class="py-8 space-y-2">
+                            <p>06:30</p>
+                            <p>8:00*</p>
                         </td>
-                        <td class="py-8 px-6 space-y-3">
-                            <p class="text-lg font-medium">8:00*</p>
-                            <p class="text-lg font-medium">19:00</p>
+                        <td class="py-8 space-y-2">
+                            <p>8:00*</p>
+                            <p>19:00</p>
                         </td>
-                        <td class="py-8 px-6 space-y-3">
-                            <p class="text-lg font-medium">8:00*</p>
-                            <p class="text-lg font-medium">19:00</p>
+                        <td class="py-8 space-y-2">
+                            <p>8:00*</p>
+                            <p>19:00</p>
                         </td>
-                        <td class="py-8 px-6 space-y-3">
-                            <p class="text-lg font-medium">8:00</p>
+                        <td class="py-8 space-y-2">
+                            <p>8:00</p>
                             <p class="text-sm text-gray-500">(Guiado)</p>
                         </td>
                     </tr>
@@ -253,7 +307,7 @@
         </div>
 
         <!-- Nota -->
-        <p class="text-sm text-gray-500 mt-6">
+        <p class="text-sm text-gray-500 mt-8">
             * Hora de entrada hasta 8:40, termina a las 10:15
         </p>
 
