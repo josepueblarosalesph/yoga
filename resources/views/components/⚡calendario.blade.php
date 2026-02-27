@@ -120,6 +120,12 @@ new class extends   Component
         $hora->save();
         $this->selectedHour = null;
         $this->myModal2 = false;
+        $this->horas = Hora::all();
+    }
+
+    public function eliminarhora($horaid){
+
+        Hora::where('id', $horaid)->delete();
     }
 
     public function render()
@@ -160,7 +166,12 @@ new class extends   Component
 
     <x-mary-modal wire:model="myModal2" title="Crea la hora para el dia {{$selectedDate}}" class="backdrop-blur">
         Selecciona la hora {{$selectedHour}}
-        <x-mary-datetime label="Hora" wire:model.live="selectedHour" icon="o-calendar" type="time" inline />
+        <flux:select wire:model.live="selectedHour">
+            <flux:select.option>Elige la hora...</flux:select.option>
+            <flux:select.option>6:30</flux:select.option>
+            <flux:select.option>8:00</flux:select.option>
+            <flux:select.option>19:00</flux:select.option>
+        </flux:select>
         <x-slot:actions>
             <x-mary-button label="Cancelar" @click="$wire.myModal2 = false" />
             <x-mary-button label="Guardar" wire:click="guardarhora" />
@@ -278,12 +289,14 @@ new class extends   Component
             <flux:separator />
         </div>
 
-        <flux:button variant="primary" class="w-full" wire:click="$wire.myModal2 = true" >Crear Hora para el dia {{$selectedDate}}</flux:button>
+        <div class="mb-6">
+            <flux:button variant="primary" class="w-full" wire:click="$wire.myModal2 = true" >Crear Hora para el dia {{$selectedDate}}</flux:button>
+        </div>
 
         @foreach($horas->where('dia', $selectedDate) as $hora)
             <flux:card class="space-y-6 mb-4">
                 <div>
-                    <flux:heading size="lg">{{$hora->name}}</flux:heading>
+                    <flux:heading size="lg" class="flex items-center gap-2">{{$hora->name}}<flux:icon wire:click="eliminarhora({{$hora->id}})" name="x-mark" class="ml-auto text-zinc-400" variant="micro" /></flux:heading>
                     <flux:text class="my-2">Máximo 9 personas</flux:text>
                     @if($reservas->where('hora_id',$hora->id)->count() >= 9) <flux:badge color="red">Clase Llena</flux:badge> @else <flux:badge color="lime">Cupos Disponibles</flux:badge>@endif
                     @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0) <flux:badge color="yellow">Ya estas inscrit@ en esta clase</flux:badge> @endif
