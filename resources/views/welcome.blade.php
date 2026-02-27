@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Yoga Studio</title>
+    <title>Ashtanga Yoga Limache</title>
 
     @vite('resources/css/app.css')
 </head>
@@ -77,11 +77,88 @@
 <!-- ABOUT -->
 <section class="py-20 bg-gray-50 text-center">
     <div class="max-w-4xl mx-auto px-6">
-        <h2 class="text-3xl font-light mb-6">Estilo Mysore</h2>
+        <h2 class="text-4xl mb-6">Estilo Mysore</h2>
         <p class="text-gray-600 leading-relaxed">
             Es la forma tradicional de enseñanza del método Ashtanga Yoga. Cada uno va a su propio ritmo aprendiendo la serie, a través de la repetición y memorización de esta secuencia establecida de asanas. El o la Guía va ajustando y agregando posturas a cada estudiante de forma personalizada hasta completar la serie.
             Es un viaje de aprendizaje, profundización y de desafíos por lo que requiere compromiso contigo mismo.
         </p>
+    </div>
+</section>
+
+<section class="relative bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 py-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+        <!-- Título principal -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white">
+                Sobre Nosotras
+            </h2>
+            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Ashtanga Yoga Limache es un espacio de práctica consciente, acompañamiento y comunidad.
+            </p>
+        </div>
+
+        <!-- Persona 1 -->
+        <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
+
+            <!-- Imagen -->
+            <div class="relative">
+                <img src="https://i.postimg.cc/Xv3hyg7t/lole.jpg"
+                     alt="Lole - Ashtanga Yoga Limache"
+                     class="w-full h-[500px] object-cover rounded-3xl shadow-xl">
+            </div>
+
+            <!-- Texto -->
+            <div>
+                <h3 class="text-3xl font-semibold text-gray-800 dark:text-white mb-6">
+                    Lole
+                </h3>
+
+                <div class="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p>
+                        Mamá,  instructora de yoga, bailarina, y siempre rodeando el movimiento corporal. Estudiante y practicante del Ashtanga yoga desde el 2011, actualmente alumna de Mati Guerra en viña del mar. 2016 realicé mi primer instructorado de Hatha Yoga en la escuela Savittar y desde el 2024 comparto mi experiencia e imparto clases en Ashtanga Yoga Limache.
+                    </p>
+                    <p class="italic border-l-4 border-yellow-400 pl-4">
+                        Para mi la práctica es una herramienta mucho más que el ejercicio físico, es un ancla para navegar la vida de forma clara y en gratitud y además una llave para el autoconocimiento.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Persona 2 -->
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+
+            <!-- Texto -->
+            <div class="order-2 md:order-1">
+                <h3 class="text-3xl font-semibold text-gray-800 dark:text-white mb-6">
+                    Fachi
+                </h3>
+
+                <div class="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p>
+                        Mujer, mamá, fotógrafa, practicante de yoga actualmente con Mati Guerra.
+                        Luego de años en torno al yoga, comienzo a practicar Ashtanga con mayor rigurosidad en 2017 y luego a profundizar en los estudios en el año 2019 en la Escuela Mandiram en Santiago, sin más pretensiones que ir entendiendo más todo lo que significa Yoga.
+                    </p>
+
+                    <p>
+                        En 2025 surge la posibilidad de unirme a la Lole en Ashtanga Yoga Limache a enseñar y es un espacio que me llena mucho. Lo siento como una meditación activa: la mente está ahí, al cien por ciento, observando cada cuerpo, acompañando y apoyando desde la propia experiencia.
+                    </p>
+
+                    <p class="italic border-l-4 border-yellow-400 pl-4">
+                        Yoga ha generado un cambio sutil y silencioso en mi. A veces es un desafío y otras un disfrute, pero siempre es un regalo poder darnos ese espacio. El otro día decía después de meterme al mar helado “estuvo exquisito, es como la práctica, una nunca se arrepiente cuando finalmente lo hace, la sensación post…”
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Imagen -->
+            <div class="order-1 md:order-2 relative">
+                <img src="https://i.postimg.cc/L8MZdxTq/fachi.jpg"
+                     alt="Fachi - Ashtanga Yoga Limache"
+                     class="w-full h-[500px] object-cover rounded-3xl shadow-xl">
+            </div>
+        </div>
+
     </div>
 </section>
 
