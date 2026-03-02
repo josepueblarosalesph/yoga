@@ -17,12 +17,14 @@ new class extends Component
             $this->reservas = Reserva::select('reservas.*')
                 ->join('horas', 'reservas.hora_id', '=', 'horas.id')
                 ->where('horas.dia', '>=', $fecha)
+                ->orderBy('horas.dia', 'asc')
                 ->get();
         }else{
             $this->reservas = Reserva::select('reservas.*')
                 ->where('user_id',Auth::id())
                 ->join('horas', 'reservas.hora_id', '=', 'horas.id')
                 ->where('horas.dia', '>=', $fecha)
+                ->orderBy('horas.dia', 'asc')
                 ->get();
         }
 
@@ -51,7 +53,9 @@ new class extends Component
                         <flux:table.cell class="whitespace-nowrap">{{ User::where('id',$reserva->user_id)->first()->name }}</flux:table.cell>
                     @endif
                     <flux:table.cell>
-                        <flux:button wire:click="eliminar({{$reserva->id}})" variant="ghost" size="sm" icon="minus-circle" inset="top bottom"></flux:button>
+                        <div x-data x-on:click="if (confirm('¿Estás seguro que deseas eliminar esta reserva?')) {$wire.eliminar({{ $reserva->id }})}">
+                            <flux:button variant="ghost" size="sm" icon="minus-circle" inset="top bottom"></flux:button>
+                        </div>
                     </flux:table.cell>
                 </flux:table.row>
             @endforeach

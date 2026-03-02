@@ -296,7 +296,7 @@ new class extends   Component
         @foreach($horas->where('dia', $selectedDate) as $hora)
             <flux:card class="space-y-6 mb-4">
                 <div>
-                    <flux:heading size="lg" class="flex items-center gap-2">{{$hora->name}}<flux:icon wire:click="eliminarhora({{$hora->id}})" name="x-mark" class="ml-auto text-zinc-400" variant="micro" /></flux:heading>
+                    <flux:heading size="lg" class="flex items-center gap-2">{{$hora->name}}<flux:icon x-data x-on:click="if (confirm('¿Estás seguro que deseas eliminar la hora?')) {$wire.eliminarhora({{ $hora->id }})}" name="x-mark" class="ml-auto text-zinc-400" variant="micro" /></flux:heading>
                     <flux:text class="my-2">Máximo 9 personas</flux:text>
                     @if($reservas->where('hora_id',$hora->id)->count() >= 9) <flux:badge color="red">Clase Llena</flux:badge> @else <flux:badge color="lime">Cupos Disponibles</flux:badge>@endif
                     @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0) <flux:badge color="yellow">Ya estas inscrit@ en esta clase</flux:badge> @endif
@@ -317,7 +317,9 @@ new class extends   Component
                                         @if(Auth::user()->admin == 1)
                                             <flux:table.cell>
                                                 @if(Auth::user()->admin == 1)
-                                                    <flux:button wire:click="expulsar({{$hora->id}},{{$reserva->user_id}})" size="xs" icon="x-mark" variant="ghost" inset />
+                                                    <div x-data x-on:click="if (confirm('¿Estás seguro que deseas eliminar al participante?')) {$wire.expulsar({{ $hora->id }}, {{ $reserva->user_id }})}">
+                                                        <flux:button size="xs" icon="x-mark" variant="ghost" inset/>
+                                                    </div>
                                                 @endif
                                             </flux:table.cell>
                                         @endif
@@ -339,11 +341,15 @@ new class extends   Component
                     @else
                         @if($reservas->where('hora_id',$hora->id)->count() >= 9)
                             @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0)
-                                <flux:button variant="danger" class="w-full" wire:click="sacar({{$hora->id}})">Salir de la clase</flux:button>
+                                <div x-data x-on:click.stop="if (confirm('¿Estás seguro que deseas salir de esta clase?')) {$wire.sacar({{ $hora->id }})}">
+                                    <flux:button variant="danger" class="w-full">Salir de la clase</flux:button>
+                                </div>
                             @endif
                         @else
                             @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0)
-                                <flux:button variant="danger" class="w-full" wire:click="sacar({{$hora->id}})">Salir de la clase</flux:button>
+                                <div x-data x-on:click.stop="if (confirm('¿Estás seguro que deseas salir de esta clase?')) {$wire.sacar({{ $hora->id }})}">
+                                    <flux:button variant="danger" class="w-full">Salir de la clase</flux:button>
+                                </div>
                             @else
                                 <flux:button variant="primary" class="w-full" wire:click="inscribirse({{$hora->id}})">Inscribirse a la clase</flux:button>
                             @endif
