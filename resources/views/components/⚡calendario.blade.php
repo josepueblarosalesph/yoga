@@ -357,13 +357,13 @@ new class extends   Component
                 </div>
                 <div class="space-y-2">
                     @if(Auth::user()->admin == 1)
-                        <flux:select wire:model.live="alumnoseleccionado" size="sm" placeholder="Selecciona un alumno...">
-                            <flux:select.option>Elige un alumno...</flux:select.option>
-                            @foreach($alumnos as $alumno)
-                                <flux:select.option value="{{$alumno->id}}">{{$alumno->name}}</flux:select.option>
-                            @endforeach
-                        </flux:select>
                         @if($reservas->where('hora_id',$hora->id)->count() < 9)
+                            <flux:select wire:model.live="alumnoseleccionado" size="sm" placeholder="Selecciona un alumno...">
+                                <flux:select.option>Elige un alumno...</flux:select.option>
+                                @foreach($alumnos as $alumno)
+                                    <flux:select.option value="{{$alumno->id}}">{{$alumno->name}}</flux:select.option>
+                                @endforeach
+                            </flux:select>
                             <flux:button variant="primary" class="w-full" wire:click="inscribir({{$hora->id}})">Inscribir a la clase</flux:button>
                         @endif
                     @else
