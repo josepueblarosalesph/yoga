@@ -351,7 +351,7 @@
 
     <!-- Imagen de fondo -->
     <div class="absolute inset-0">
-        <img src="/images/yoga-bg.jpg"
+        <img src="https://i.postimg.cc/7ZMJqSsq/imagenweb6.jpg"
              alt="Práctica de yoga"
              class="w-full h-full object-cover">
     </div>
