@@ -193,7 +193,7 @@
             Valores
         </h2>
 
-        <div class="grid grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             <div class="bg-white shadow-lg rounded-2xl p-8 text-center">
                 <h3 class="text-xl font-medium mb-4">Libre</h3>
@@ -346,6 +346,55 @@
 
 </section>
 
+<!-- HERO CONSIDERACIONES -->
+<section class="relative min-h-screen flex items-center justify-center">
+
+    <!-- Imagen de fondo -->
+    <div class="absolute inset-0">
+        <img src="/images/yoga-bg.jpg"
+             alt="Práctica de yoga"
+             class="w-full h-full object-cover">
+    </div>
+
+    <!-- Overlay 60% -->
+    <div class="absolute inset-0 bg-black/60"></div>
+
+    <!-- Contenido -->
+    <div class="relative max-w-4xl mx-auto px-6 py-20 text-white">
+
+        <h1 class="text-3xl md:text-4xl font-light text-center mb-12 tracking-wide">
+            CONSIDERACIONES PARA LA PRÁCTICA COLECTIVA
+        </h1>
+
+        <ul class="space-y-3 text-lg leading-relaxed mb-14">
+            <li>• Ayuno antes de la práctica de al menos 2 horas</li>
+            <li>• Idealmente no ingerir líquidos durante la práctica</li>
+            <li>• Entrar en silencio a la sala e intentar mantener ese modo durante la práctica</li>
+            <li>• Teléfonos y relojes inteligentes guardados y en silencio</li>
+            <li>• Puedes llevar una toalla para secarte durante la práctica</li>
+            <li>• Procura ir limpio, considerando que compartimos un espacio colectivo</li>
+        </ul>
+
+        <h2 class="text-3xl md:text-4xl font-light text-center mb-10 tracking-wide">
+            FORMAS DE PAGO Y RESERVA CLASES
+        </h2>
+
+        <ul class="space-y-3 text-lg leading-relaxed mb-12">
+            <li>• Transferir los primeros 5 días del mes</li>
+            <li>• Reserva tus cupos a través del link</li>
+            <li>• Si no puedes asistir a una de tus reservas, puedes liberar tu cupo hasta 12 horas antes</li>
+            <li>• Si pierdes una de tus clases puedes recuperarla en otro horario disponible</li>
+            <li>• Los feriados no se recuperan</li>
+            <li>• Las clases no son acumulables para el mes siguiente</li>
+        </ul>
+
+        <p class="text-center italic text-white/90">
+            *si tienes alguna duda o problema nos puedes escribir directamente para que conversemos :)
+        </p>
+
+    </div>
+
+</section>
 
 <!-- CTA -->
 <section class="py-20 bg-emerald-600 text-white text-center">
