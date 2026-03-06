@@ -247,7 +247,10 @@ new class extends   Component
                 @php
                     $dateFormatted = $day->format('Y-m-d');
                     $hasHours = in_array($dateFormatted, $daysWithHours);
-                    $isToday = $day->isToday();
+                    $isToday = false;
+                    if($day->toDateString() == $selectedDate){
+                        $isToday = true;
+                    }
                 @endphp
 
                 <div
