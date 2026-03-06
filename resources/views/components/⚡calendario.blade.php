@@ -363,7 +363,9 @@ new class extends   Component
                                 <flux:select.option value="{{$alumno->id}}">{{$alumno->name}}</flux:select.option>
                             @endforeach
                         </flux:select>
-                        <flux:button variant="primary" class="w-full" wire:click="inscribir({{$hora->id}})">Inscribir a la clase</flux:button>
+                        @if($reservas->where('hora_id',$hora->id)->count() >= 9)
+                            <flux:button variant="primary" class="w-full" wire:click="inscribir({{$hora->id}})">Inscribir a la clase</flux:button>
+                        @endif
                     @else
                         @if($reservas->where('hora_id',$hora->id)->count() >= 9)
                             @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0)
