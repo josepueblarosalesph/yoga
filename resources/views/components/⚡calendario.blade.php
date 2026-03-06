@@ -327,7 +327,7 @@ new class extends   Component
         @foreach($horas->where('dia', $selectedDate) as $hora)
             <flux:card class="space-y-6 mb-4">
                 <div>
-                    <flux:heading size="lg" class="flex items-center gap-2">{{$hora->name}}<flux:icon x-data x-on:click="if (confirm('¿Estás seguro que deseas eliminar la hora?')) {$wire.eliminarhora({{ $hora->id }})}" name="x-mark" class="ml-auto text-zinc-400" variant="micro" /></flux:heading>
+                    <flux:heading size="lg" class="flex items-center gap-2">{{$hora->name}}@if(Auth::user()->admin == 1)<flux:icon x-data x-on:click="if (confirm('¿Estás seguro que deseas eliminar la hora?')) {$wire.eliminarhora({{ $hora->id }})}" name="x-mark" class="ml-auto text-zinc-400" variant="micro" />@endif</flux:heading>
                     <flux:text class="my-2">Máximo 9 personas</flux:text>
                     @if($reservas->where('hora_id',$hora->id)->count() >= 9) <flux:badge color="red">Clase Llena</flux:badge> @else <flux:badge color="lime">Cupos Disponibles</flux:badge>@endif
                     @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0) <flux:badge color="yellow">Ya estas inscrit@ en esta clase</flux:badge> @endif
