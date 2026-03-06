@@ -159,7 +159,7 @@
                 <div class="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
                     <p>
                         Mujer, mamá, fotógrafa, practicante de yoga actualmente con Mati Guerra.
-                        Luego de años en torno al yoga, comienzo a practicar Ashtanga con mayor rigurosidad en 2017 y luego a profundizar en los estudios en el año 2019 en la Escuela Mandiram en Santiago, sin más pretensiones que ir entendiendo más todo lo que significa Yoga.
+                        Luego de años en torno al yoga, comienzo a practicar Ashtanga con mayor rigurosidad en 2017 y  en el año 2019 realizo mis estudios de Profesorado en Yoga en la Escuela Mandiram en Santiago.
                     </p>
 
                     <p>
@@ -167,8 +167,7 @@
                     </p>
 
                     <p class="italic border-l-4 border-yellow-400 pl-4">
-                        Yoga ha generado un cambio sutil y silencioso en mi. A veces es un desafío y otras un disfrute, pero siempre es un regalo poder darnos ese espacio. El otro día decía después de meterme al mar helado “estuvo exquisito, es como la práctica, una nunca se arrepiente cuando finalmente lo hace, la sensación post…”
-                    </p>
+                        Yoga ha generado un cambio sutil y silencioso en mi. A veces es desafiante, pero siempre se agradece haberlo hecho, sobretodo por mi mente inquieta. El otro día decía después de meterme al mar helado “estuvo exquisito, es como la práctica, una nunca se arrepiente cuando finalmente lo hace, la sensación post..”                    </p>
                 </div>
 
             </div>
