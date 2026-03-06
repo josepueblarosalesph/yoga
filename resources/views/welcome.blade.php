@@ -76,29 +76,31 @@
 
 <!-- ABOUT -->
 <section class="py-20 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10">
 
         <!-- Bloque 1 -->
-        <div>
+        <div class="bg-yellow-50 p-8 rounded-xl">
             <h2 class="text-4xl mb-6 text-center md:text-left">
                 Estilo Mysore
             </h2>
 
             <p class="text-gray-600 leading-relaxed">
-                Es la forma tradicional de enseñanza del método Ashtanga Yoga. Cada uno va a su propio ritmo aprendiendo la serie, a través de la repetición y memorización de una secuencia establecida de posturas o asanas. El o la Guía va ajustando y agregando posturas a cada estudiante de forma personalizada y progresiva hasta completar la serie.
-                Es un viaje de aprendizaje, profundización y de desafíos por lo que requiere compromiso y paciencia.
+                Es la forma tradicional de enseñanza del método Ashtanga Yoga. Cada uno va a su propio ritmo aprendiendo la serie, a través de la repetición y memorización de una secuencia establecida de posturas o asanas. El o la Guía va ajustando y agregando posturas a cada estudiante de forma personalizada y progresiva hasta completar la serie.<br>
+                Es un viaje de aprendizaje, profundización y de desafíos por lo que requiere compromiso y paciencia.<br>
                 La práctica es adaptable a cada cuerpo, y no necesitas experiencia previa. Es una oportunidad diaria de volver a ti, bajar la velocidad y a la vez desarrollar fuerza, flexibilidad y movilidad.
+
             </p>
         </div>
 
         <!-- Bloque 2 -->
-        <div>
+        <div class="bg-orange-50 p-8 rounded-xl">
             <h2 class="text-4xl mb-6 text-center md:text-left">
                 Clase Guiada
             </h2>
 
             <p class="text-gray-600 leading-relaxed">
-                En este formato todos los alumnos van al mismo ritmo, siguiendo el conteo que el o la profesora va guiando. Sirve mucho para entender el ritmo de la práctica, la respiración coordinada con el movimiento, experimentando de esa manera un flujo colectivo. La clase guiada será de la primera serie de Ashtanga hasta Navasana, y los practicantes que desean continuar con su serie, pueden hacerlo desde ahí a su propio tiempo. Se requiere al menos un mes de práctica para asistir a una clase guiada.
+                En este formato todos los alumnos van al mismo ritmo, siguiendo el conteo que el o la profesora va guiando. Sirve mucho para entender el ritmo de la práctica, la respiración coordinada con el movimiento, experimentando de esa manera un flujo colectivo. <br>
+                La clase guiada será de la primera serie de Ashtanga hasta Navasana, y los practicantes que desean continuar con su serie, pueden hacerlo desde ahí a su propio tiempo. Se requiere al menos un mes de práctica para asistir a una clase guiada.
             </p>
         </div>
 
@@ -336,7 +338,7 @@
 
         <!-- Nota -->
         <p class="text-sm text-gray-500 mt-8">
-            * Hora de entrada hasta 8:40, termina a las 10:15
+            * Hora de entrada hasta 8:40, termina a las 10:15 <br>
             ** Hora de entrada hasta 7:00
         </p>
 
