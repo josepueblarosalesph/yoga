@@ -75,13 +75,33 @@
 
 
 <!-- ABOUT -->
-<section class="py-20 bg-gray-50 text-center">
-    <div class="max-w-4xl mx-auto px-6">
-        <h2 class="text-4xl mb-6">Estilo Mysore</h2>
-        <p class="text-gray-600 leading-relaxed">
-            Es la forma tradicional de enseñanza del método Ashtanga Yoga. Cada uno va a su propio ritmo aprendiendo la serie, a través de la repetición y memorización de esta secuencia establecida de asanas. El o la Guía va ajustando y agregando posturas a cada estudiante de forma personalizada hasta completar la serie.
-            Es un viaje de aprendizaje, profundización y de desafíos por lo que requiere compromiso contigo mismo.
-        </p>
+<section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
+
+        <!-- Bloque 1 -->
+        <div>
+            <h2 class="text-4xl mb-6 text-center md:text-left">
+                Estilo Mysore
+            </h2>
+
+            <p class="text-gray-600 leading-relaxed">
+                Es la forma tradicional de enseñanza del método Ashtanga Yoga. Cada uno va a su propio ritmo aprendiendo la serie, a través de la repetición y memorización de una secuencia establecida de posturas o asanas. El o la Guía va ajustando y agregando posturas a cada estudiante de forma personalizada y progresiva hasta completar la serie.
+                Es un viaje de aprendizaje, profundización y de desafíos por lo que requiere compromiso y paciencia.
+                La práctica es adaptable a cada cuerpo, y no necesitas experiencia previa. Es una oportunidad diaria de volver a ti, bajar la velocidad y a la vez desarrollar fuerza, flexibilidad y movilidad.
+            </p>
+        </div>
+
+        <!-- Bloque 2 -->
+        <div>
+            <h2 class="text-4xl mb-6 text-center md:text-left">
+                Clase Guiada
+            </h2>
+
+            <p class="text-gray-600 leading-relaxed">
+                En este formato todos los alumnos van al mismo ritmo, siguiendo el conteo que el o la profesora va guiando. Sirve mucho para entender el ritmo de la práctica, la respiración coordinada con el movimiento, experimentando de esa manera un flujo colectivo. La clase guiada será de la primera serie de Ashtanga hasta Navasana, y los practicantes que desean continuar con su serie, pueden hacerlo desde ahí a su propio tiempo. Se requiere al menos un mes de práctica para asistir a una clase guiada.
+            </p>
+        </div>
+
     </div>
 </section>
 
@@ -171,7 +191,7 @@
             Valores
         </h2>
 
-        <div class="grid grid-cols-2 gap-8">
+        <div class="grid grid-cols-3 gap-8">
 
             <div class="bg-white shadow-lg rounded-2xl p-8 text-center">
                 <h3 class="text-xl font-medium mb-4">Libre</h3>
@@ -187,6 +207,14 @@
                     Entra a 2 clases por semana
                 </p>
                 <h3 class="text-xl font-medium mb-4">$35.000</h3>
+            </div>
+
+            <div class="bg-white shadow-lg rounded-2xl p-8 text-center">
+                <h3 class="text-xl font-medium mb-4">Clase suelta</h3>
+                <p class="text-gray-600">
+                    Pago por una clase
+                </p>
+                <h3 class="text-xl font-medium mb-4">$7.000</h3>
             </div>
 
         </div>
@@ -225,7 +253,7 @@
             <div class="bg-white rounded-2xl shadow-lg p-6">
                 <h3 class="font-semibold text-lg text-gray-800 mb-3">Martes</h3>
                 <div class="space-y-2 text-gray-700">
-                    <p>06:30</p>
+                    <p>6:30**</p>
                     <p>8:00*</p>
                 </div>
             </div>
@@ -284,7 +312,7 @@
                             <p>19:00</p>
                         </td>
                         <td class="py-8 space-y-2">
-                            <p>06:30</p>
+                            <p>6:30**</p>
                             <p>8:00*</p>
                         </td>
                         <td class="py-8 space-y-2">
@@ -309,6 +337,7 @@
         <!-- Nota -->
         <p class="text-sm text-gray-500 mt-8">
             * Hora de entrada hasta 8:40, termina a las 10:15
+            ** Hora de entrada hasta 7:00
         </p>
 
     </div>
@@ -323,11 +352,11 @@
             Comienza hoy tu práctica
         </h2>
         <p class="mb-8">
-            Reserva tu primera clase y vive la experiencia.
+            Ven a probar con nosotras. La primera clase es sin costo.
         </p>
-        <a href="#"
+        <a href="https://wa.link/jyaspt"
            class="bg-white text-emerald-600 px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-100 transition">
-            Reservar Ahora
+            Escríbenos acá
         </a>
     </div>
 </section>
