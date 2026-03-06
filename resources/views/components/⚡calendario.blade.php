@@ -236,49 +236,48 @@ new class extends   Component
         <div>Dom</div>
     </div>
 
-    {{-- Grid calendario --}}
-    <div class="grid grid-cols-7 gap-px bg-gray-200 dark:bg-neutral-400 rounded-xl overflow-hidden">
+    {{-- Grid calendario estilo widget --}}
+    <div class="grid grid-cols-7 gap-px bg-gray-200 dark:bg-neutral-700 rounded-xl overflow-hidden text-center">
 
         @foreach($days as $day)
 
             @if($day === null)
-                <div class="bg-gray-50 dark:bg-neutral-900 h-28"></div>
+                <div class="bg-gray-50 dark:bg-neutral-900 h-16"></div>
             @else
                 @php
                     $dateFormatted = $day->format('Y-m-d');
                     $hasHours = in_array($dateFormatted, $daysWithHours);
-                    $isToday = false;
-                    if($day->toDateString() == $selectedDate){
-                        $isToday = true;
-                    }
+                    $isToday = $day->toDateString() == $selectedDate;
                 @endphp
 
                 <div
                     wire:click="selectDay('{{ $dateFormatted }}')"
                     class="
-                        h-28 bg-white dark:bg-neutral-900 p-2 cursor-pointer relative
-                        hover:bg-blue-50 dark:hover:bg-neutral-700 transition
-                    "
+                    h-16 bg-white dark:bg-neutral-900
+                    flex flex-col items-center justify-center
+                    cursor-pointer relative
+                    hover:bg-blue-50 dark:hover:bg-neutral-700
+                    transition
+                "
                 >
-                    <div class="flex justify-between items-start">
 
-                        <span class="
-                            text-sm font-medium
-                            {{ $isToday ? 'bg-green-700 text-white rounded-full px-2' : 'bg-gray-500 text-white rounded-full px-2' }}
-                        ">
-                            {{ $day->day }}
-                        </span>
+                <span class="
+                    text-sm font-medium w-7 h-7 flex items-center justify-center
+                    {{ $isToday
+                        ? 'bg-green-600 text-white rounded-full'
+                        : 'text-gray-700 dark:text-gray-200'
+                    }}
+                ">
+                    {{ $day->day }}
+                </span>
 
-                    </div>
-
-                    {{-- Indicador de horas disponibles --}}
+                    {{-- Punto indicador de horas --}}
                     @if($hasHours)
-                        <div class="absolute bottom-2 left-2 right-2">
-                            <div class="h-2 bg-blue-500 rounded-full"></div>
-                        </div>
+                        <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-1"></div>
                     @endif
 
                 </div>
+
             @endif
 
         @endforeach
