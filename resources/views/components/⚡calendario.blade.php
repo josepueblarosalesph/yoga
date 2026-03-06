@@ -42,7 +42,7 @@ new class extends   Component
     {
         $this->daysWithHours = Hora::whereMonth('dia', $this->currentMonth)
             ->whereYear('dia', $this->currentYear)
-            //->where('disponible', true)
+            ->where('disponible', true)
             ->pluck('dia')
             ->map(fn ($d) => Carbon::parse($d)->format('Y-m-d'))
             ->unique()
@@ -71,7 +71,7 @@ new class extends   Component
         $this->selectedDate = $date;
 
         $this->horasa = Hora::whereDate('dia', $date)
-            //->where('disponible', true)
+            ->where('disponible', true)
             ->orderBy('id')
             ->get();
 
@@ -86,6 +86,13 @@ new class extends   Component
             $reserva->hora_id = $horaid;
             $reserva->save();
             $this->reservas = Reserva::all();
+            if(Reserva::where('hora_id', $horaid)->get()->count() == 9){
+                $hora = Hora::find($horaid);
+                $hora->disponible = false;
+                $hora->save();
+                $this->horas = Hora::all();
+                $this->loadDaysWithHours();
+            }
         } else {
             $this->myModal1 = true;
         }
@@ -99,17 +106,38 @@ new class extends   Component
             $reserva->hora_id = $horaid;
             $reserva->save();
             $this->reservas = Reserva::all();
+            if(Reserva::where('hora_id', $horaid)->get()->count() == 9){
+                $hora = Hora::find($horaid);
+                $hora->disponible = false;
+                $hora->save();
+                $this->horas = Hora::all();
+                $this->loadDaysWithHours();
+            }
         } else {
             $this->myModal1 = true;
         }
     }
-    public function sacar($horaid)
+    public function sacar($horaid, $disponible)
     {
         Reserva::where('user_id', Auth::id())->where('hora_id', $horaid)->delete();
+        if($disponible == false){
+            $hora = Hora::find($horaid);
+            $hora->disponible = true;
+            $hora->save();
+            $this->horas = Hora::all();
+            $this->loadDaysWithHours();
+        }
     }
-    public function expulsar($horaid, $userid)
+    public function expulsar($horaid, $userid, $disponible)
     {
         Reserva::where('user_id', $userid)->where('hora_id', $horaid)->delete();
+        if($disponible == false){
+            $hora = Hora::find($horaid);
+            $hora->disponible = true;
+            $hora->save();
+            $this->horas = Hora::all();
+            $this->loadDaysWithHours();
+        }
     }
 
     public function guardarhora()
@@ -117,6 +145,7 @@ new class extends   Component
         $hora = new Hora;
         $hora->dia = $this->selectedDate;
         $hora->name = $this->selectedDate . ' ' . $this->selectedHour;
+        $hora->disponible = true;
         $hora->save();
         $this->selectedHour = null;
         $this->myModal2 = false;
@@ -308,23 +337,17 @@ new class extends   Component
                         <flux:table>
                             <flux:table.columns>
                                 <flux:table.column>Participante</flux:table.column>
-                                @if(Auth::user()->admin == 1)
-                                    <flux:table.column>Borrar</flux:table.column>
-                                @endif
+                                <flux:table.column>Borrar</flux:table.column>
                             </flux:table.columns>
                             @foreach($reservas->where('hora_id',$hora->id) as $reserva)
                                 <flux:table.rows>
                                     <flux:table.row>
                                         <flux:table.cell>{{\App\Models\User::find($reserva->user_id)->name}}</flux:table.cell>
-                                        @if(Auth::user()->admin == 1)
                                             <flux:table.cell>
-                                                @if(Auth::user()->admin == 1)
-                                                    <div x-data x-on:click="if (confirm('¿Estás seguro que deseas eliminar al participante?')) {$wire.expulsar({{ $hora->id }}, {{ $reserva->user_id }})}">
-                                                        <flux:button size="xs" icon="x-mark" variant="ghost" inset/>
-                                                    </div>
-                                                @endif
+                                                <div x-data x-on:click="if (confirm('¿Estás seguro que deseas eliminar al participante?')) {$wire.expulsar({{ $hora->id }}, {{ $reserva->user_id }}, @js($hora->disponible))}">
+                                                    <flux:button size="xs" icon="x-mark" variant="ghost" inset/>
+                                                </div>
                                             </flux:table.cell>
-                                        @endif
                                     </flux:table.row>
                                 </flux:table.rows>
                             @endforeach
@@ -335,6 +358,7 @@ new class extends   Component
                 <div class="space-y-2">
                     @if(Auth::user()->admin == 1)
                         <flux:select wire:model.live="alumnoseleccionado" size="sm" placeholder="Selecciona un alumno...">
+                            <flux:select.option>Elige un alumno...</flux:select.option>
                             @foreach($alumnos as $alumno)
                                 <flux:select.option value="{{$alumno->id}}">{{$alumno->name}}</flux:select.option>
                             @endforeach
@@ -343,13 +367,13 @@ new class extends   Component
                     @else
                         @if($reservas->where('hora_id',$hora->id)->count() >= 9)
                             @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0)
-                                <div x-data x-on:click.stop="if (confirm('¿Estás seguro que deseas salir de esta clase?')) {$wire.sacar({{ $hora->id }})}">
+                                <div x-data x-on:click.stop="if (confirm('¿Estás seguro que deseas salir de esta clase?')) {$wire.sacar({{ $hora->id }}, @js($hora->disponible))}">
                                     <flux:button variant="danger" class="w-full">Salir de la clase</flux:button>
                                 </div>
                             @endif
                         @else
                             @if($reservas->where('hora_id',$hora->id)->where('user_id',Auth::id())->count() > 0)
-                                <div x-data x-on:click.stop="if (confirm('¿Estás seguro que deseas salir de esta clase?')) {$wire.sacar({{ $hora->id }})}">
+                                <div x-data x-on:click.stop="if (confirm('¿Estás seguro que deseas salir de esta clase?')) {$wire.sacar({{ $hora->id }}, @js($hora->disponible))}">
                                     <flux:button variant="danger" class="w-full">Salir de la clase</flux:button>
                                 </div>
                             @else
