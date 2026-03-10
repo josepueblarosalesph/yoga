@@ -27,7 +27,7 @@ new class extends   Component
     public function mount()
     {
         Carbon::setLocale('es');
-        $this->horas = Hora::all();
+        $this->horas = Hora::orderBy('created_at','asc')->get();
         $this->reservas = Reserva::all();
         $this->currentMonth = now()->month;
         $this->currentYear  = now()->year;
@@ -90,7 +90,7 @@ new class extends   Component
                 $hora = Hora::find($horaid);
                 $hora->disponible = false;
                 $hora->save();
-                $this->horas = Hora::all();
+                $this->horas = Hora::orderBy('created_at','asc')->get();
                 $this->loadDaysWithHours();
             }
         } else {
@@ -110,7 +110,7 @@ new class extends   Component
                 $hora = Hora::find($horaid);
                 $hora->disponible = false;
                 $hora->save();
-                $this->horas = Hora::all();
+                $this->horas = Hora::orderBy('created_at','asc')->get();
                 $this->loadDaysWithHours();
             }
         } else {
@@ -124,7 +124,7 @@ new class extends   Component
             $hora = Hora::find($horaid);
             $hora->disponible = true;
             $hora->save();
-            $this->horas = Hora::all();
+            $this->horas = Hora::orderBy('created_at','asc')->get();
             $this->loadDaysWithHours();
         }
     }
@@ -135,7 +135,7 @@ new class extends   Component
             $hora = Hora::find($horaid);
             $hora->disponible = true;
             $hora->save();
-            $this->horas = Hora::all();
+            $this->horas = Hora::orderBy('created_at','asc')->get();
             $this->loadDaysWithHours();
         }
     }
@@ -149,7 +149,7 @@ new class extends   Component
         $hora->save();
         $this->selectedHour = null;
         $this->myModal2 = false;
-        $this->horas = Hora::all();
+        $this->horas = Hora::orderBy('created_at','asc')->get();
     }
 
     public function eliminarhora($horaid){
@@ -197,9 +197,9 @@ new class extends   Component
         Selecciona la hora {{$selectedHour}}
         <flux:select wire:model.live="selectedHour">
             <flux:select.option>Elige la hora...</flux:select.option>
-            <flux:select.option>6:30</flux:select.option>
-            <flux:select.option>8:00</flux:select.option>
-            <flux:select.option>19:00</flux:select.option>
+            <flux:select.option>6:30 AM</flux:select.option>
+            <flux:select.option>8:00 AM</flux:select.option>
+            <flux:select.option>7:00 PM</flux:select.option>
         </flux:select>
         <x-slot:actions>
             <x-mary-button label="Cancelar" @click="$wire.myModal2 = false" />
