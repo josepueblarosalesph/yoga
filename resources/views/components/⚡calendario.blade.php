@@ -199,6 +199,7 @@ new class extends   Component
             <flux:select.option>Elige la hora...</flux:select.option>
             <flux:select.option>6:30 AM</flux:select.option>
             <flux:select.option>8:00 AM</flux:select.option>
+            <flux:select.option>6:30 PM</flux:select.option>
             <flux:select.option>7:00 PM</flux:select.option>
         </flux:select>
         <x-slot:actions>
