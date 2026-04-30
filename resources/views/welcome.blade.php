@@ -318,7 +318,7 @@
                         </td>
                         <td class="py-8 space-y-2">
                             <p>8:00*</p>
-                            <p>19:00</p>
+                            <p>18:30</p>
                         </td>
                         <td class="py-8 space-y-2">
                             <p>8:00*</p>
