@@ -275,11 +275,11 @@
         <div class="grid gap-4 md:hidden text-left">
             @php
                 $dias = [
-                    ['Lunes', ['8:00*', '19:00']],
-                    ['Martes', ['6:30**', '8:00*']],
-                    ['Miércoles', ['8:00*', '19:00']],
-                    ['Jueves', ['8:00*', '19:00']],
-                    ['Viernes', ['8:00', '(Guiado)']],
+                    ['Lunes', ['', '19:00']],
+                    ['Martes', ['6:30', '']],
+                    ['Miércoles', ['8:30', '18:30']],
+                    ['Jueves', ['', '19:00']],
+                    ['Viernes', ['8:30', '10:00 a 11:00 Paro de Manos']],
                 ];
             @endphp
             @foreach($dias as $d)
@@ -307,20 +307,16 @@
                     </thead>
                     <tbody class="text-deep">
                     <tr class="schedule-row text-lg font-display">
-                        <td class="py-10 space-y-2"><p>8:00*</p><p>19:00</p></td>
-                        <td class="py-10 space-y-2"><p>6:30**</p><p>8:00*</p></td>
-                        <td class="py-10 space-y-2"><p>8:00*</p><p>18:30</p></td>
-                        <td class="py-10 space-y-2"><p>8:00*</p><p>19:00</p></td>
-                        <td class="py-10 space-y-2"><p>8:00</p><p class="text-sm italic text-ember">(Guiado)</p></td>
+                        <td class="py-10 space-y-2"><p>19:00</p></td>
+                        <td class="py-10 space-y-2"><p>6:30</p></td>
+                        <td class="py-10 space-y-2"><p>8:30</p><p>18:30</p></td>
+                        <td class="py-10 space-y-2"><p>19:00</p></td>
+                        <td class="py-10 space-y-2"><p>8:30</p><p class="text-sm italic text-ember">10 a 11 Paro de Manos</p></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <p class="text-sm text-deep/70 mt-8 italic">
-            * Hora de entrada hasta 8:40, termina a las 10:15 &nbsp;·&nbsp; ** Hora de entrada hasta 7:00
-        </p>
     </div>
 </section>
 
